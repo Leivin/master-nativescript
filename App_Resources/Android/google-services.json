@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "134008531650",
+    "firebase_url": "https://master-pwa.firebaseio.com",
+    "project_id": "master-pwa",
+    "storage_bucket": "master-pwa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:134008531650:android:cd6701c531281a03",
+        "android_client_info": {
+          "package_name": "org.nativescript.masternativescript"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "134008531650-d2rjiui634thmhgqtt98t9j750hh3jes.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDegz9VDVZ6daZLHbTrapYPb25vWhrU-Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "134008531650-d2rjiui634thmhgqtt98t9j750hh3jes.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

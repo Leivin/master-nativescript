@@ -1,1 +1,19 @@
-  <page-router-outlet></page-router-outlet>
+<!-- TODO Ogarnięcie styli do nawigacji bocznej oraz wstawienie linków do odpowiednich sekcji -->
+<RadSideDrawer>
+  <FlexboxLayout tkDrawerContent>
+    <StackLayout class="sidedrawer-left">
+      <StackLayout class="sidedrawer-header">
+          <Label text="Hello RadSideDrawer!" class="sidedrawer-header-brand"></Label>
+      </StackLayout>
+      <StackLayout class="sidedrawer-content">
+          <Label text="Home" class="sidedrawer-list-item-text"></Label>
+          <Label text="Basics" class="sidedrawer-list-item-text"></Label>
+          <Label text="Options" class="sidedrawer-list-item-text"></Label>
+          <Label text="Help" class="sidedrawer-list-item-text"></Label>
+          <Label text="Advanced" class="sidedrawer-list-item-text"></Label>
+      </StackLayout>
+  </StackLayout>
+  </FlexboxLayout>
+
+  <page-router-outlet tkMainContent></page-router-outlet>
+</RadSideDrawer>
