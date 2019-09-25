@@ -21,7 +21,8 @@
             "~/*": [
                 "src/*"
             ]
-        }
+        },
+        "module": "esnext"
     },
     "exclude": [
         "**/*.tns.ts",
