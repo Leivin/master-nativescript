@@ -1,26 +1,81 @@
 <!-- TODO Ogarnięcie styli do nawigacji bocznej oraz wstawienie linków do odpowiednich sekcji -->
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
-      <StackLayout row="0" class="sidedrawer-header">
-          <Label class="sidedrawer-header-image"></Label>
-          <Label class="sidedrawer-header-brand" text="User Name"></Label>
-          <Label class="footnote" text="username@mail.com"></Label>
-      </StackLayout>
-  
-      <ScrollView row="1" class="sidedrawer-content">
-          <StackLayout>
-              <GridLayout columns="auto, *" class="sidedrawer-list-item" [ngClass]="{'selected' :  isComponentSelected('/home')}" (tap)="onNavItemTap('/home')">
-                  <Label col="0" text="Home"></Label>
-              </GridLayout>
+    <StackLayout row="0" class="sidedrawer-header">
+      <Label class="sidedrawer-header-image"></Label>
+      <Label class="sidedrawer-header-brand" text="User Name"></Label>
+      <Label class="footnote" text="username@mail.com"></Label>
+    </StackLayout>
 
-              <StackLayout class="hr-light"></StackLayout>
- 
-              <GridLayout columns="auto, *" class="sidedrawer-list-item" [ngClass]="{'selected' :  isComponentSelected('/about')}" (tap)="onNavItemTap('/about')">
-                  <Label col="0" text="About"></Label>
-              </GridLayout>
-          </StackLayout>
-      </ScrollView>
+    <ScrollView row="1" class="sidedrawer-content">
+      <StackLayout>
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/home') }"
+          (tap)="onNavItemTap('/home')"
+        >
+          <Label col="0" text="&#xf3c5;" class="fas label-icon"></Label>
+          <Label col="1" text="Mapa restauracji"></Label>
+        </GridLayout>
+
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/') }"
+          (tap)="onNavItemTap('/home')"
+        >
+          <Label col="0" text="&#xf005;" class="fas label-icon"></Label>
+          <Label col="1" text="Moje restauracje"></Label>
+        </GridLayout>
+
+        <StackLayout class="hr-light"></StackLayout>
+
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/') }"
+          (tap)="onNavItemTap('/about')"
+        >
+          <Label col="0" text="&#xf007;" class="fas label-icon"></Label>
+          <Label col="1" text="Zaloguj się"></Label>
+        </GridLayout>
+
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/') }"
+          (tap)="onNavItemTap('/about')"
+        >
+          <Label col="0" text="&#xf2f5;" class="fas label-icon"></Label>
+          <Label col="1" text="Wyloguj się"></Label>
+        </GridLayout>
+
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/') }"
+          (tap)="onNavItemTap('/about')"
+        >
+          <Label col="0" text="&#xf013;" class="fas label-icon"></Label>
+          <Label col="1" text="Ustawienia"></Label>
+        </GridLayout>
+
+        <GridLayout
+          columns="45, *"
+          class="sidedrawer-list-item"
+          [ngClass]="{ selected: isComponentSelected('/about') }"
+          (tap)="onNavItemTap('/about')"
+        >
+          <Label col="0" text="&#xf128;" class="fas label-icon"></Label>
+          <Label col="1" text="O aplikacji"></Label>
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
   </GridLayout>
 
-  <page-router-outlet tkMainContent class="page page-content"></page-router-outlet>
+  <page-router-outlet
+    tkMainContent
+    class="page page-content"
+  ></page-router-outlet>
 </RadSideDrawer>

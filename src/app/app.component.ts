@@ -9,6 +9,7 @@ import {
 import { filter } from "rxjs/operators";
 import * as app from "tns-core-modules/application";
 
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -20,7 +21,7 @@ export class AppComponent {
 
   constructor(
     private router: Router,
-    private routerExtensions: RouterExtensions
+    private routerExtensions: RouterExtensions,
   ) {
     // Use the component constructor to inject services.
   }

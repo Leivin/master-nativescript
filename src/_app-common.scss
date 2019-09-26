@@ -1,45 +1,52 @@
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 
- // Drawer navigation custom styles
- $sidedrawer-list-item-font-size: 20px;
- 
- .sidedrawer {
-     &.sidedrawer-left {
- 
-         .sidedrawer-header-image {
-             margin-bottom: 5;
-         }
- 
-         .footnote {
-            
-         }
-     }
- 
-     .sidedrawer-header {
-         background-color: teal;
- 
-         .sidedrawer-header-brand {
-         }
-     }
- 
-     .sidedrawer-content {
-         
- 
-         .sidedrawer-list-item {
-             height: auto;
-             
-             Label {
-                 font-size: $sidedrawer-list-item-font-size;
-                 padding-left: 16;
-                 line-height: 20px;
-             }
-            
-             &.selected {
-                 Label {
-                     color: red;
-                 }
-             }
-         }
-     }
- }
+.sidedrawer {
+  .sidedrawer-header {
+    background-color: $darkSeaGreen;
+
+    .sidedrawer-header-image {
+      margin-bottom: 5;
+    }
+
+    .sidedrawer-header-brand {
+        color: $white;
+    }
+
+    .footnote {
+        color: $white;
+    }
+  }
+
+  .sidedrawer-content {
+    .sidedrawer-list-item {
+      min-height: 75px;
+
+      label {
+        font-size: 20px;
+        vertical-align: center;
+        padding-left: 10;
+      }
+
+      &.selected {
+        background-color: $myrtleGreen;
+
+        label {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.fa {
+  font-family: "Font Awesome 5 Free", "fa-regular-400";
+}
+
+.fas {
+  font-family: "Font Awesome 5 Free", "fa-solid-900";
+}
+
+.label-icon {
+    text-align: center;
+}
