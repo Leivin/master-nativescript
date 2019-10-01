@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-
 import { getString, setString } from "tns-core-modules/application-settings";
 
 import { User } from "../models/user.model";
 
+const firebase = require("nativescript-plugin-firebase");
 const _CURRENT_USER = "_CURRENT_USER";
 
 @Injectable()
@@ -25,11 +25,11 @@ export class BackendService {
 //     }
 //   }
 
-//   logout() {
-//     return Kinvey.User.logout().then(() => {
-//       this.user = "";
-//     });
-//   }
+  logout() {
+    return firebase.logout().then(() => {
+        this.user = "";
+    });
+  }
 
 //   private performLogin(user: User) {
 //     return Kinvey.User.login(user.email, user.password).then((_user: any) => {

@@ -21,6 +21,7 @@ const firebase = require("nativescript-plugin-firebase");
 export class AppComponent {
   private _activatedUrl: string;
   private _sideDrawerTransition: DrawerTransitionBase;
+  private isUserLoggedIn: boolean;
 
   constructor(
     private router: Router,
@@ -33,6 +34,7 @@ export class AppComponent {
   ngOnInit(): void {
     this._activatedUrl = "/home";
     this._sideDrawerTransition = new SlideInOnTopTransition();
+    this.isUserLoggedIn = this.backendService.isUserLoggedIn();
 
     firebase.init({
       // Optionally pass in properties for database, authentication and cloud messaging,

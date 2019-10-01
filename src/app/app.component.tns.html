@@ -1,4 +1,3 @@
-<!-- TODO Ogarnięcie styli do nawigacji bocznej oraz wstawienie linków do odpowiednich sekcji -->
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
     <StackLayout row="0" class="sidedrawer-header">
@@ -22,7 +21,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
-          *ngIf="this.backendService.isUserLoggedIn()"
+          *ngIf="this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/home')"
         >
@@ -35,7 +34,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
-          *ngIf="!this.backendService.isUserLoggedIn()"
+          *ngIf="!this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/about')"
         >
@@ -46,9 +45,9 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
-          *ngIf="this.backendService.isUserLoggedIn()"
+          *ngIf="this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="onNavItemTap('/about')"
+          (tap)="this.backendService.logout()"
         >
           <Label col="0" text="&#xf2f5;" class="fas label-icon"></Label>
           <Label col="1" text="Wyloguj się"></Label>
@@ -57,7 +56,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
-          *ngIf="this.backendService.isUserLoggedIn()"
+          *ngIf="this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/about')"
         >
