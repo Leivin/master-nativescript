@@ -2,9 +2,9 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
     <StackLayout row="0" class="sidedrawer-header">
-      <Label class="sidedrawer-header-image"></Label>
-      <Label class="sidedrawer-header-brand" text="User Name"></Label>
-      <Label class="footnote" text="username@mail.com"></Label>
+      <Label class="sidedrawer-header-image" *ngIf="this.backendService.isUserLoggedIn()"></Label>
+      <Label class="sidedrawer-header-brand" text="User Name" *ngIf="this.backendService.isUserLoggedIn()"></Label>
+      <Label class="footnote" text="username@mail.com" *ngIf="this.backendService.isUserLoggedIn()"></Label>
     </StackLayout>
 
     <ScrollView row="1" class="sidedrawer-content">
@@ -22,6 +22,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
+          *ngIf="this.backendService.isUserLoggedIn()"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/home')"
         >
@@ -34,6 +35,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
+          *ngIf="!this.backendService.isUserLoggedIn()"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/about')"
         >
@@ -44,6 +46,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
+          *ngIf="this.backendService.isUserLoggedIn()"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/about')"
         >
@@ -54,6 +57,7 @@
         <GridLayout
           columns="45, *"
           class="sidedrawer-list-item"
+          *ngIf="this.backendService.isUserLoggedIn()"
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="onNavItemTap('/about')"
         >
