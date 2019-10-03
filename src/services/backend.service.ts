@@ -15,16 +15,6 @@ export class BackendService {
     return loggedIn;
   }
 
-//   public loginWithKinvey(user: User): Promise<any> {
-//     let _user: Kinvey.User = Kinvey.User.getActiveUser();
-//     if (_user) {
-//       return _user.logout()
-//         .then(() => this.performLogin(user));
-//     } else {
-//       return this.performLogin(user);
-//     }
-//   }
-
   logout() {
     return firebase.logout().then(() => {
         this.user = "";
@@ -36,6 +26,30 @@ export class BackendService {
 //       this.user = JSON.stringify(_user)
 //     });
 //   }
+
+  register(email, password) {
+    firebase.createUser({
+      email: 'eddyverbruggen@gmail.com',
+      password: 'firebase'
+    }).then(
+        function (user) {
+          alert({
+            title: "User created",
+            message: "email: " + user.email,
+            okButtonText: "Nice!"
+          })
+
+          console.log(user);
+        },
+        function (errorMessage) {
+          alert({
+            title: "No user created",
+            message: errorMessage,
+            okButtonText: "OK, got it"
+          })
+        }
+    );
+  }
 
   private get user(): string {
     return getString(_CURRENT_USER);

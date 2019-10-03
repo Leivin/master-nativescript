@@ -35,8 +35,8 @@
           columns="45, *"
           class="sidedrawer-list-item"
           *ngIf="!this.isUserLoggedIn"
-          [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="onNavItemTap('/about')"
+          [ngClass]="{ selected: isComponentSelected('/login') }"
+          (tap)="onNavItemTap('/login')"
         >
           <Label col="0" text="&#xf007;" class="fas label-icon"></Label>
           <Label col="1" text="Zaloguj się"></Label>

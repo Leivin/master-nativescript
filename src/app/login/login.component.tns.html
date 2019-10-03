@@ -1,0 +1,62 @@
+<FlexboxLayout class="page">
+  <StackLayout class="form">
+    <Label class="header" text="LOGOWANIE" *ngIf="signInForm"></Label>
+    <Label class="header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
+
+    <StackLayout class="input-field">
+      <TextField
+        class="input"
+        hint="Adres e-mail"
+        keyboardType="email"
+        autocorrect="false"
+        autocapitalizationType="none"
+        [(ngModel)]="email"
+        returnKeyType="next"
+      ></TextField>
+      <StackLayout class="hr-light"></StackLayout>
+    </StackLayout>
+
+    <StackLayout class="input-field">
+      <TextField
+        class="input"
+        hint="Hasło"
+        secure="true"
+        [(ngModel)]="password"
+        [returnKeyType]="signInForm ? 'done' : 'next'"
+      ></TextField>
+      <StackLayout class="hr-light"></StackLayout>
+    </StackLayout>
+
+    <StackLayout *ngIf="!signInForm" class="input-field">
+      <TextField
+        class="input"
+        hint="Powtórz hasło"
+        secure="true"
+        [(ngModel)]="confirmPassword"
+        returnKeyType="done"
+      ></TextField>
+      <StackLayout class="hr-light"></StackLayout>
+    </StackLayout>
+
+    <Button
+      [text]="signInForm ? 'Zaloguj się' : 'Zarejestruj się'"
+      (tap)="submit()"
+      class="btn btn-primary m-t-20"
+    ></Button>
+    <Label
+      *ngIf="signInForm"
+      text="Zapomniałeś hasła?"
+      class="login-label"
+      (tap)="forgotPassword()"
+    ></Label>
+  </StackLayout>
+
+  <Label class="login-label sign-up-label" (tap)="toggleForm()">
+    <FormattedString>
+      <Span
+        [text]="signInForm ? 'Nie masz konta? ' : 'Wróć do logowania'"
+      ></Span>
+      <Span [text]="signInForm ? 'Zarejestruj się!' : ''" class="bold"></Span>
+    </FormattedString>
+  </Label>
+</FlexboxLayout>
