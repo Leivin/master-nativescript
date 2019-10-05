@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 
 import { BackendService } from "../../services/backend.service";
@@ -10,16 +12,22 @@ import { BackendService } from "../../services/backend.service";
   styleUrls: ["./login.component.scss"]
 })
 export class LoginComponent {
-  //TODO: Nie działa binding pól tekstowych...
-  signInForm: Boolean = true;
-  email: string = '';
-  password: string = '';
-  confirmPassword: string = '';
+  signInForm = true;
+  loginForm: FormGroup;
 
   constructor(
     private backendService: BackendService,
-    private router: Router
+    private formBuilder: FormBuilder
   ) {
+    this.createForm();
+  }
+
+  private createForm() {
+    this.loginForm = this.formBuilder.group({ 
+      email:  ['', Validators.required], 
+      password: ['', Validators.required], 
+      confirmPassword: ['']
+    });
   }
 
   toggleForm() {
@@ -28,11 +36,6 @@ export class LoginComponent {
 
   submit() {
     // TODO: Ładniejsza walidacja
-    console.log(this.email, this.password)
-    if (!this.email || !this.password) {
-      this.alert("Uzupełnij wymagane pola");
-      return;
-    }
 
     if (this.signInForm) {
       this.login();
@@ -42,11 +45,25 @@ export class LoginComponent {
   }
 
   login() {
-    console.log("login!");
+    let email = this.loginForm.get('email').value;
+    let password = this.loginForm.get('password').value;
+
+    if (!email || !password) {
+      return;
+    }
+
+    this.backendService.login(email, password);
   }
 
   register() {
-    this.backendService.register(name, this.password);
+    let email = this.loginForm.get('email').value;
+    let password = this.loginForm.get('password').value;
+
+    if (!email || !password) {
+      return;
+    }
+
+    this.backendService.register(email, password);
   }
 
   forgotPassword() {

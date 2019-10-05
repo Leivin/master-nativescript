@@ -21,40 +21,42 @@ const firebase = require("nativescript-plugin-firebase");
 export class AppComponent {
   private _activatedUrl: string;
   private _sideDrawerTransition: DrawerTransitionBase;
-  private isUserLoggedIn: boolean;
+  isUserLoggedIn: boolean;
 
   constructor(
     private router: Router,
     private routerExtensions: RouterExtensions,
     private backendService: BackendService
-  ) {
-    // Use the component constructor to inject services.
-  }
+  ) {}
 
   ngOnInit(): void {
     this._activatedUrl = "/home";
     this._sideDrawerTransition = new SlideInOnTopTransition();
+
     this.isUserLoggedIn = this.backendService.isUserLoggedIn();
 
-    firebase.init({
-      // Optionally pass in properties for database, authentication and cloud messaging,
-      // see their respective docs.
-    }).then(
-      () => {
-        console.log("firebase.init done");
-      },
-      error => {
-        console.log(`firebase.init error: ${error}`);
-      }
-    );
+    let self = this;
+
+    firebase
+      .init({
+        onAuthStateChanged: function(data) {
+          self.isUserLoggedIn = data.loggedIn;
+        }
+      })
+      .then(
+        () => {
+          console.log("firebase.init done");
+        },
+        error => {
+          console.log(`firebase.init error: ${error}`);
+        }
+      );
 
     this.router.events
       .pipe(filter((event: any) => event instanceof NavigationEnd))
-      .subscribe(
-        (event: NavigationEnd) => {
-          this._activatedUrl = event.urlAfterRedirects;
-        }
-      );
+      .subscribe((event: NavigationEnd) => {
+        this._activatedUrl = event.urlAfterRedirects;
+      });
   }
 
   get sideDrawerTransition(): DrawerTransitionBase {

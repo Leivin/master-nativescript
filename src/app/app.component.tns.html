@@ -1,9 +1,9 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
     <StackLayout row="0" class="sidedrawer-header">
-      <Label class="sidedrawer-header-image" *ngIf="this.backendService.isUserLoggedIn()"></Label>
-      <Label class="sidedrawer-header-brand" text="User Name" *ngIf="this.backendService.isUserLoggedIn()"></Label>
-      <Label class="footnote" text="username@mail.com" *ngIf="this.backendService.isUserLoggedIn()"></Label>
+      <Label class="sidedrawer-header-image" *ngIf="this.isUserLoggedIn"></Label>
+      <Label class="sidedrawer-header-brand" text="User Name" *ngIf="this.isUserLoggedIn"></Label>
+      <Label class="footnote" text="username@mail.com" *ngIf="this.isUserLoggedIn"></Label>
     </StackLayout>
 
     <ScrollView row="1" class="sidedrawer-content">

@@ -1,16 +1,16 @@
 <FlexboxLayout class="page">
-  <StackLayout class="form">
+  <StackLayout class="form" [formGroup]="loginForm">
     <Label class="header" text="LOGOWANIE" *ngIf="signInForm"></Label>
     <Label class="header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
 
     <StackLayout class="input-field">
       <TextField
         class="input"
+        formControlName="email"
         hint="Adres e-mail"
         keyboardType="email"
         autocorrect="false"
         autocapitalizationType="none"
-        [(ngModel)]="email"
         returnKeyType="next"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
@@ -21,7 +21,7 @@
         class="input"
         hint="Hasło"
         secure="true"
-        [(ngModel)]="password"
+        formControlName="password"
         [returnKeyType]="signInForm ? 'done' : 'next'"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
@@ -31,8 +31,8 @@
       <TextField
         class="input"
         hint="Powtórz hasło"
+        formControlName="confirmPassword"
         secure="true"
-        [(ngModel)]="confirmPassword"
         returnKeyType="done"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
