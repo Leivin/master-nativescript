@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 
-import { BackendService } from "../../services/backend.service";
+import { BackendService } from "../../../services/backend.service";
 
 @Component({
   selector: "app-login",
