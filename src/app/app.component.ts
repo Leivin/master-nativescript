@@ -40,6 +40,7 @@ export class AppComponent {
     firebase
       .init({
         onAuthStateChanged: function(data) {
+          console.log(data)
           self.isUserLoggedIn = data.loggedIn;
         }
       })

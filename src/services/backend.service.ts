@@ -9,6 +9,8 @@ const _CURRENT_USER = "_CURRENT_USER";
 
 @Injectable()
 export class BackendService {
+  isLoading = false;
+
   constructor(private routerExtensions: RouterExtensions) {}
 
   public isUserLoggedIn(): boolean {
@@ -18,15 +20,21 @@ export class BackendService {
   }
 
   logout() {
+    this.isLoading = true;
+
     firebase.logout();
     this.user = "";
-    this.routerExtensions.navigate(["/login"]);
+    this.isLoading = false;
+
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.closeDrawer();
+
+    this.routerExtensions.navigate(["/login"]);
   }
 
   login(email: string, password: string) {
     let self = this;
+    this.isLoading = true;
 
     firebase
       .login({
@@ -38,9 +46,12 @@ export class BackendService {
       })
       .then(result => {
         self.user = result.uid;
+        self.isLoading = false;
         self.routerExtensions.navigate(["/"]);
       })
       .catch(error => {
+        self.isLoading = false;
+
         alert({
           title: "Nie udało się zalogować...",
           message: error,
@@ -51,6 +62,7 @@ export class BackendService {
 
   register(email: string, password: string) {
     let self = this;
+    this.isLoading = true;
 
     firebase
       .createUser({
@@ -59,6 +71,8 @@ export class BackendService {
       })
       .then(
         function(user) {
+          self.isLoading = false;
+
           alert({
             title: "Pomyślnie zarejestrowano",
             message: "Podany adres e-mail: " + user.email,
@@ -74,6 +88,8 @@ export class BackendService {
             message: errorMessage,
             okButtonText: "OK"
           });
+
+          self.isLoading = false;
         }
       );
   }
