@@ -1,8 +1,7 @@
 @import "../../../app-variables";
-//TODO: Ładniej by można... może wydzielić do zmiennych/komponentów?
+//TODO: Ładniej by można... może wydzielić do zmiennych/komponentów/globals?
 
 .page {
-  align-items: center;
   flex-direction: column;
 }
 
@@ -13,7 +12,7 @@
   vertical-align: middle;
 }
 
-.header {
+.form__header {
   horizontal-align: center;
   font-size: 25;
   font-weight: 600;
@@ -22,34 +21,21 @@
   color: $bottleGreen;
 }
 
-.input-field {
+.form__input-field {
   margin-bottom: 25;
 }
 
-.input {
+.form__input {
   font-size: 18;
-  placeholder-color: $inputPlaceholderColor;
-}
-
-.btn-primary {
-  height: 50;
-  margin: 30 5 15 5;
-  background-color: $myrtleGreen;
-  border-radius: 5;
-  font-size: 20;
-  font-weight: 600;
+  placeholder-color: $form__inputPlaceholderColor;
 }
 
 .login-label {
   horizontal-align: center;
-  color: $inputPlaceholderColor;
+  color: $form__inputPlaceholderColor;
   font-size: 16;
 }
 
 .sign-up-label {
   margin-bottom: 20;
-}
-
-.bold {
-  color: $black;
 }

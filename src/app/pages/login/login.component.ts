@@ -1,14 +1,14 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { alert, prompt } from "tns-core-modules/ui/dialogs";
+import { prompt } from 'tns-core-modules/ui/dialogs';
 
-import { BackendService } from "../../../services/backend.service";
+import { BackendService } from '../../../services/backend.service';
 
 @Component({
-  selector: "app-login",
-  templateUrl: "./login.component.html",
-  styleUrls: ["./login.component.scss"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   signInForm = true;
@@ -22,9 +22,9 @@ export class LoginComponent {
   }
 
   private createForm() {
-    this.loginForm = this.formBuilder.group({ 
-      email:  ['', Validators.required], 
-      password: ['', Validators.required], 
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
       confirmPassword: ['']
     });
   }
@@ -35,57 +35,37 @@ export class LoginComponent {
 
   submit() {
     // TODO: Ładniejsza walidacja
+    const email = this.loginForm.get('email').value;
+    const password = this.loginForm.get('password').value;
 
     if (this.signInForm) {
-      this.login();
+      this.login(email, password);
     } else {
-      this.register();
+      this.register(email, password);
     }
   }
 
-  login() {
-    let email = this.loginForm.get('email').value;
-    let password = this.loginForm.get('password').value;
-
-    if (!email || !password) {
-      return;
-    }
-
+  login(email, password) {
     this.backendService.login(email, password);
   }
 
-  register() {
-    let email = this.loginForm.get('email').value;
-    let password = this.loginForm.get('password').value;
-
-    if (!email || !password) {
-      return;
-    }
-
+  register(email, password) {
     this.backendService.register(email, password);
   }
 
   forgotPassword() {
     prompt({
-      title: "Zapomniałeś hasła?",
+      title: 'Zapomniałeś hasła?',
       message:
-        "Podaj adres e-mail, którego użyłeś do zarejestrowania konta - wyślemy Ci e-mail z linkiem do zresetowania hasła!",
-      inputType: "email",
-      defaultText: "",
-      okButtonText: "OK",
-      cancelButtonText: "Anuluj"
+        'Podaj adres e-mail, którego użyłeś do zarejestrowania konta - wyślemy Ci e-mail z linkiem do zresetowania hasła!',
+      inputType: 'email',
+      defaultText: '',
+      okButtonText: 'OK',
+      cancelButtonText: 'Anuluj'
     }).then(data => {
       if (data.result) {
         console.log(data.text.trim());
       }
-    });
-  }
-
-  alert(message: string) {
-    return alert({
-      title: "Błąd walidacji",
-      okButtonText: "OK",
-      message: message
     });
   }
 }

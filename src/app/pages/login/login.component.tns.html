@@ -1,11 +1,11 @@
-<FlexboxLayout class="page">
+<FlexboxLayout class="page" alignItems="center" justifyContent="center">
   <StackLayout class="form" [formGroup]="loginForm">
-    <Label class="header" text="LOGOWANIE" *ngIf="signInForm"></Label>
-    <Label class="header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
+    <Label class="form__header" text="LOGOWANIE" *ngIf="signInForm"></Label>
+    <Label class="form__header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
 
-    <StackLayout class="input-field">
+    <StackLayout class="form__input-field">
       <TextField
-        class="input"
+        class="form__input"
         formControlName="email"
         hint="Adres e-mail"
         keyboardType="email"
@@ -14,22 +14,23 @@
         returnKeyType="next"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
+      <Label class="form__small-tip" text="Adres e-mail"></Label>
     </StackLayout>
 
-    <StackLayout class="input-field">
+    <StackLayout class="form__inpu-field">
       <TextField
-        class="input"
+        [returnKeyType]="signInForm ? 'done' : 'next'"
+        class="form__input"
         hint="Hasło"
         secure="true"
         formControlName="password"
-        [returnKeyType]="signInForm ? 'done' : 'next'"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
     </StackLayout>
 
-    <StackLayout *ngIf="!signInForm" class="input-field">
+    <StackLayout *ngIf="!signInForm" class="form__input-field">
       <TextField
-        class="input"
+        class="form__input"
         hint="Powtórz hasło"
         formControlName="confirmPassword"
         secure="true"
@@ -40,14 +41,15 @@
 
     <Button
       [text]="signInForm ? 'Zaloguj się' : 'Zarejestruj się'"
+      [disabled]="!loginForm.valid"
       (tap)="submit()"
       class="btn btn-primary m-t-20"
     ></Button>
     <Label
       *ngIf="signInForm"
+      (tap)="forgotPassword()"
       text="Zapomniałeś hasła?"
       class="login-label"
-      (tap)="forgotPassword()"
     ></Label>
   </StackLayout>
 
@@ -61,4 +63,4 @@
   </Label>
 </FlexboxLayout>
 
-<app-loader *ngIf=this.backendService.isLoading></app-loader>
+<app-loader *ngIf="this.backendService.isLoading"></app-loader>

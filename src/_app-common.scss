@@ -1,6 +1,7 @@
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 
+// SideDrawer styles
 .sidedrawer {
   .sidedrawer-header {
     background-color: $darkSeaGreen;
@@ -39,6 +40,22 @@
   }
 }
 
+// Button styles
+.btn-primary {
+  height: 50;
+  margin: 30 5 15 5;
+  background-color: $myrtleGreen;
+  border-radius: 5;
+  font-size: 20;
+  font-weight: 600;
+}
+
+// Text styles
+.bold {
+  color: $black;
+}
+
+// FontAwesome styles
 .fa {
   font-family: "Font Awesome 5 Free", "fa-regular-400";
 }

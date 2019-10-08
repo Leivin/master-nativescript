@@ -3,6 +3,6 @@ export class User {
   password: string;
 
   hasEmail() {
-    return this.email != "";
+    return this.email !== '';
   }
 }

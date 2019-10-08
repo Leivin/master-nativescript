@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { getString, setString } from "tns-core-modules/application-settings";
-import { RouterExtensions } from "nativescript-angular/router";
-import { RadSideDrawer } from "nativescript-ui-sidedrawer";
-import * as app from "tns-core-modules/application";
+import { Injectable } from '@angular/core';
+import { getString, setString } from 'tns-core-modules/application-settings';
+import { RouterExtensions } from 'nativescript-angular/router';
+import { RadSideDrawer } from 'nativescript-ui-sidedrawer';
+import * as app from 'tns-core-modules/application';
 
-const firebase = require("nativescript-plugin-firebase");
-const _CURRENT_USER = "_CURRENT_USER";
+const firebase = require('nativescript-plugin-firebase');
+const _CURRENT_USER = '_CURRENT_USER';
 
 @Injectable()
 export class BackendService {
@@ -14,7 +14,7 @@ export class BackendService {
   constructor(private routerExtensions: RouterExtensions) {}
 
   public isUserLoggedIn(): boolean {
-    let loggedIn = !!this.user;
+    const loggedIn = !!this.user;
 
     return loggedIn;
   }
@@ -23,17 +23,17 @@ export class BackendService {
     this.isLoading = true;
 
     firebase.logout();
-    this.user = "";
+    this.user = '';
     this.isLoading = false;
 
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.closeDrawer();
 
-    this.routerExtensions.navigate(["/login"]);
+    this.routerExtensions.navigate(['/login']);
   }
 
   login(email: string, password: string) {
-    let self = this;
+    const self = this;
     this.isLoading = true;
 
     firebase
@@ -47,21 +47,21 @@ export class BackendService {
       .then(result => {
         self.user = result.uid;
         self.isLoading = false;
-        self.routerExtensions.navigate(["/"]);
+        self.routerExtensions.navigate(['/']);
       })
       .catch(error => {
         self.isLoading = false;
 
         alert({
-          title: "Nie udało się zalogować...",
+          title: 'Nie udało się zalogować...',
           message: error,
-          okButtonText: "OK"
+          okButtonText: 'OK'
         });
       });
   }
 
   register(email: string, password: string) {
-    let self = this;
+    const self = this;
     this.isLoading = true;
 
     firebase
@@ -74,19 +74,19 @@ export class BackendService {
           self.isLoading = false;
 
           alert({
-            title: "Pomyślnie zarejestrowano",
-            message: "Podany adres e-mail: " + user.email,
-            okButtonText: "Przejdź do restauracji"
+            title: 'Pomyślnie zarejestrowano',
+            message: 'Podany adres e-mail: ' + user.email,
+            okButtonText: 'Przejdź do restauracji'
           });
 
           self.user = user.uid;
-          self.routerExtensions.navigate(["/"]);
+          self.routerExtensions.navigate(['/']);
         },
         function(errorMessage) {
           alert({
-            title: "Nie udało się zarejestrować...",
+            title: 'Nie udało się zarejestrować...',
             message: errorMessage,
-            okButtonText: "OK"
+            okButtonText: 'OK'
           });
 
           self.isLoading = false;
