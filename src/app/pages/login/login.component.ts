@@ -24,7 +24,9 @@ export class LoginComponent {
   private createForm() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      // todo: custom validator for password length - only when register
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      // todo: custom validator for confirmPassword - same as password
       confirmPassword: ['']
     });
   }
@@ -34,9 +36,8 @@ export class LoginComponent {
   }
 
   submit() {
-    // TODO: Ładniejsza walidacja
-    const email = this.loginForm.get('email').value;
-    const password = this.loginForm.get('password').value;
+    const email = this.email.value;
+    const password = this.password.value;
 
     if (this.signInForm) {
       this.login(email, password);
@@ -68,4 +69,8 @@ export class LoginComponent {
       }
     });
   }
+
+  get email() { return this.loginForm.get('email'); }
+  get password() { return this.loginForm.get('password'); }
+  get confirmPassword() { return this.loginForm.get('confirmPassword'); }
 }

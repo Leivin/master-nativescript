@@ -3,9 +3,9 @@
     <Label class="form__header" text="LOGOWANIE" *ngIf="signInForm"></Label>
     <Label class="form__header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
 
-    <StackLayout class="form__input-field">
+    <StackLayout class="input-field">
       <TextField
-        class="form__input"
+        class="input"
         formControlName="email"
         hint="Adres e-mail"
         keyboardType="email"
@@ -14,23 +14,48 @@
         returnKeyType="next"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
-      <Label class="form__small-tip" text="Adres e-mail"></Label>
+
+      <StackLayout *ngIf="email.invalid && (email.dirty || email.touched)">
+        <Label
+          *ngIf="email.errors.required"
+          class="text-danger"
+          text="To pole jest obowiązkowe."
+        ></Label>
+        <Label
+          *ngIf="email.errors.email"
+          class="text-danger"
+          text="To nie jest prawidłowy adres e-mail."
+        ></Label>
+      </StackLayout>
     </StackLayout>
 
-    <StackLayout class="form__inpu-field">
+    <StackLayout class="input-field">
       <TextField
         [returnKeyType]="signInForm ? 'done' : 'next'"
-        class="form__input"
+        class="input"
         hint="Hasło"
         secure="true"
         formControlName="password"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
+
+      <StackLayout *ngIf="password.invalid && (password.dirty || password.touched)">
+        <Label
+          *ngIf="password.errors.required"
+          class="text-danger"
+          text="To pole jest obowiązkowe."
+        ></Label>
+        <Label
+          *ngIf="password.errors.minlength && !signInForm"
+          class="text-danger"
+          text="Hasło powinno mieć co najmniej 6 znaków."
+        ></Label>
+      </StackLayout>
     </StackLayout>
 
-    <StackLayout *ngIf="!signInForm" class="form__input-field">
+    <StackLayout *ngIf="!signInForm" class="input-field">
       <TextField
-        class="form__input"
+        class="input"
         hint="Powtórz hasło"
         formControlName="confirmPassword"
         secure="true"
@@ -41,7 +66,7 @@
 
     <Button
       [text]="signInForm ? 'Zaloguj się' : 'Zarejestruj się'"
-      [disabled]="!loginForm.valid"
+      [isEnabled]="loginForm.valid"
       (tap)="submit()"
       class="btn btn-primary m-t-20"
     ></Button>

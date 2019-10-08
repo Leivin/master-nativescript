@@ -21,18 +21,18 @@
   color: $bottleGreen;
 }
 
-.form__input-field {
+.input-field {
   margin-bottom: 25;
 }
 
-.form__input {
+.input {
   font-size: 18;
-  placeholder-color: $form__inputPlaceholderColor;
+  placeholder-color: $inputPlaceholderColor;
 }
 
 .login-label {
   horizontal-align: center;
-  color: $form__inputPlaceholderColor;
+  color: $inputPlaceholderColor;
   font-size: 16;
 }
 
