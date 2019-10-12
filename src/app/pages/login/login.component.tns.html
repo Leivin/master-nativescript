@@ -1,7 +1,7 @@
 <FlexboxLayout class="page" alignItems="center" justifyContent="center">
   <StackLayout class="form" [formGroup]="loginForm">
-    <Label class="form__header" text="LOGOWANIE" *ngIf="signInForm"></Label>
-    <Label class="form__header" text="REJESTRACJA" *ngIf="!signInForm"></Label>
+    <Label class="form__header" text="LOGOWANIE" *ngIf="signInMode"></Label>
+    <Label class="form__header" text="REJESTRACJA" *ngIf="!signInMode"></Label>
 
     <StackLayout class="input-field">
       <TextField
@@ -31,7 +31,7 @@
 
     <StackLayout class="input-field">
       <TextField
-        [returnKeyType]="signInForm ? 'done' : 'next'"
+        [returnKeyType]="signInMode ? 'done' : 'next'"
         class="input"
         hint="Hasło"
         secure="true"
@@ -46,14 +46,14 @@
           text="To pole jest obowiązkowe."
         ></Label>
         <Label
-          *ngIf="password.errors.minlength && !signInForm"
+          *ngIf="password.errors.minlength && !signInMode"
           class="text-danger"
           text="Hasło powinno mieć co najmniej 6 znaków."
         ></Label>
       </StackLayout>
     </StackLayout>
 
-    <StackLayout *ngIf="!signInForm" class="input-field">
+    <StackLayout *ngIf="!signInMode" class="input-field">
       <TextField
         class="input"
         hint="Powtórz hasło"
@@ -62,16 +62,29 @@
         returnKeyType="done"
       ></TextField>
       <StackLayout class="hr-light"></StackLayout>
+
+      <StackLayout *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+        <Label
+          *ngIf="confirmPassword.errors.required"
+          class="text-danger"
+          text="To pole jest obowiązkowe."
+        ></Label>
+        <Label
+          *ngIf="confirmPassword.errors.notMatching && !signInMode"
+          class="text-danger"
+          text="Hasła nie są identyczne."
+        ></Label>
+      </StackLayout>
     </StackLayout>
 
     <Button
-      [text]="signInForm ? 'Zaloguj się' : 'Zarejestruj się'"
+      [text]="signInMode ? 'Zaloguj się' : 'Zarejestruj się'"
       [isEnabled]="loginForm.valid"
       (tap)="submit()"
       class="btn btn-primary m-t-20"
     ></Button>
     <Label
-      *ngIf="signInForm"
+      *ngIf="signInMode"
       (tap)="forgotPassword()"
       text="Zapomniałeś hasła?"
       class="login-label"
@@ -81,9 +94,9 @@
   <Label class="login-label sign-up-label" (tap)="toggleForm()">
     <FormattedString>
       <Span
-        [text]="signInForm ? 'Nie masz konta? ' : 'Wróć do logowania'"
+        [text]="signInMode ? 'Nie masz konta? ' : 'Wróć do logowania'"
       ></Span>
-      <Span [text]="signInForm ? 'Zarejestruj się!' : ''" class="bold"></Span>
+      <Span [text]="signInMode ? 'Zarejestruj się!' : ''" class="bold"></Span>
     </FormattedString>
   </Label>
 </FlexboxLayout>

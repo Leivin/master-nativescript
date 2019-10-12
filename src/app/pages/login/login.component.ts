@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { prompt } from 'tns-core-modules/ui/dialogs';
 
 import { BackendService } from '../../../services/backend.service';
+import { samePasswordValueValidator } from '~/shared/same-password-value.directive';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { BackendService } from '../../../services/backend.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  signInForm = true;
+  signInMode = true;
   loginForm: FormGroup;
 
   constructor(
@@ -24,22 +25,47 @@ export class LoginComponent {
   private createForm() {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      // todo: custom validator for password length - only when register
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      // todo: custom validator for confirmPassword - same as password
-      confirmPassword: ['']
+      password: [
+        '',
+        [
+          Validators.required,
+          this.signInMode ? Validators.nullValidator : Validators.minLength(6)
+        ]
+      ],
+      confirmPassword: [
+        '',
+        [
+          this.signInMode ? Validators.nullValidator : Validators.required,
+          samePasswordValueValidator('password')
+        ]
+      ]
     });
   }
 
   toggleForm() {
-    this.signInForm = !this.signInForm;
+    this.signInMode = !this.signInMode;
+    this.resetPasswordValidators();
+  }
+
+  resetPasswordValidators() {
+    this.loginForm.controls['password'].setValidators([
+      Validators.required,
+      this.signInMode ? Validators.nullValidator : Validators.minLength(6)
+    ]);
+    this.loginForm.controls['confirmPassword'].setValidators([
+      this.signInMode ? Validators.nullValidator : Validators.required,
+      samePasswordValueValidator('password')
+    ]);
+
+    this.loginForm.controls['password'].updateValueAndValidity();
+    this.loginForm.controls['confirmPassword'].updateValueAndValidity();
   }
 
   submit() {
     const email = this.email.value;
     const password = this.password.value;
 
-    if (this.signInForm) {
+    if (this.signInMode) {
       this.login(email, password);
     } else {
       this.register(email, password);
@@ -51,6 +77,11 @@ export class LoginComponent {
   }
 
   register(email, password) {
+    if (this.confirmPassword.value !== password) {
+      alert('Podane hasła nie są identyczne!');
+      return;
+    }
+
     this.backendService.register(email, password);
   }
 
@@ -70,7 +101,13 @@ export class LoginComponent {
     });
   }
 
-  get email() { return this.loginForm.get('email'); }
-  get password() { return this.loginForm.get('password'); }
-  get confirmPassword() { return this.loginForm.get('confirmPassword'); }
+  get email() {
+    return this.loginForm.get('email');
+  }
+  get password() {
+    return this.loginForm.get('password');
+  }
+  get confirmPassword() {
+    return this.loginForm.get('confirmPassword');
+  }
 }
