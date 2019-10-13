@@ -22,8 +22,8 @@
           columns="45, *"
           class="sidedrawer-list-item"
           *ngIf="this.isUserLoggedIn"
-          [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="onNavItemTap('/home')"
+          [ngClass]="{ selected: isComponentSelected('/my-restaurants') }"
+          (tap)="onNavItemTap('/my-restaurants')"
         >
           <Label col="0" text="&#xf005;" class="fas label-icon"></Label>
           <Label col="1" text="Moje restauracje"></Label>

@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoaderComponent } from './common/loader/loader.component';
+import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
 
 import { BackendService } from '../services/backend.service';
 import { AuthGuard } from '../services/auth-guard.service';
@@ -28,7 +29,8 @@ import { AuthGuard } from '../services/auth-guard.service';
     HomeComponent,
     AboutComponent,
     LoginComponent,
-    LoaderComponent
+    LoaderComponent,
+    MyRestaurantsComponent
   ],
   imports: [
     NativeScriptModule,

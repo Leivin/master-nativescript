@@ -16,7 +16,6 @@ registerElement('MapView', () => MapView);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-
 export class HomeComponent implements OnInit {
   latitude = 52.26;
   longitude = 21.01;
@@ -58,6 +57,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onSearchBarLoaded(event) {
+    if (event.object.android) {
+      event.object.android.clearFocus();
+    }
+  }
+
   requestPermissions() {
     return new Promise(function(resolve) {
       permissions
@@ -68,8 +73,7 @@ export class HomeComponent implements OnInit {
         .then(function() {
           resolve(true);
         })
-        .catch(function(result) {
-          console.log('Permissions failed :(', result);
+        .catch(function() {
           resolve(false);
         });
     });
