@@ -1,4 +1,11 @@
-<GridLayout>
+<StackLayout>
+  <SearchBar
+    hint="Search hint"
+    text=""
+    color="black"
+    textFieldBackgroundColor="white"
+    textFieldHintColor="gray"
+  ></SearchBar>
   <MapView
     #mapView
     [latitude]="latitude"
@@ -11,4 +18,4 @@
     [padding]="padding"
     (mapReady)="onMapReady($event)"
   ></MapView>
-</GridLayout>
+</StackLayout>

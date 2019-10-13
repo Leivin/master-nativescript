@@ -29,7 +29,7 @@ export class BackendService {
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.closeDrawer();
 
-    this.routerExtensions.navigate(['/login']);
+    this.routerExtensions.navigate(['/login'], {clearHistory: true});
   }
 
   login(email: string, password: string) {
@@ -47,7 +47,7 @@ export class BackendService {
       .then(result => {
         self.user = result.uid;
         self.isLoading = false;
-        self.routerExtensions.navigate(['/']);
+        self.routerExtensions.navigate(['/'], {clearHistory: true});
       })
       .catch(error => {
         self.isLoading = false;
@@ -80,7 +80,7 @@ export class BackendService {
           });
 
           self.user = user.uid;
-          self.routerExtensions.navigate(['/']);
+          self.routerExtensions.navigate(['/'], {clearHistory: true});
         },
         function(errorMessage) {
           alert({
