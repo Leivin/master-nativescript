@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { registerElement } from 'nativescript-angular/element-registry';
-import { MapView, Marker, Position } from 'nativescript-google-maps-sdk';
+import { MapView, Marker, Position, Style } from 'nativescript-google-maps-sdk';
 import * as permissions from 'nativescript-permissions';
+import { Image } from 'tns-core-modules/ui/image';
+import { ImageSource } from 'tns-core-modules/image-source';
+import googleMapsStyles from '../../../shared/google-maps-styles';
 
 declare var android: any;
 
@@ -13,6 +16,7 @@ registerElement('MapView', () => MapView);
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit {
   latitude = 52.26;
   longitude = 21.01;
@@ -24,70 +28,44 @@ export class HomeComponent implements OnInit {
   padding = [40, 40, 40, 40];
   mapView: MapView;
 
-  lastCamera: String;
-
   constructor() {}
 
   ngOnInit() {}
 
   // Map events
   onMapReady(event) {
-    console.log('Map Ready');
-
     this.mapView = event.object;
+    this.mapView.setStyle(<Style>googleMapsStyles);
 
-    console.log('Setting a marker...');
-
-    let marker = new Marker();
+    const marker = new Marker();
     marker.position = Position.positionFromLatLng(52.27, 21.04);
     marker.title = 'Paweł Kosmala';
     marker.snippet = 'Miłość mojego życia';
-    marker.userData = { index: 1 };
+
+    const imageSource = new ImageSource();
+    imageSource.loadFromFile('~/assets/images/map_pin.png');
+    const icon = new Image();
+    icon.imageSource = imageSource;
+
+    marker.icon = icon;
     this.mapView.addMarker(marker);
+
     this.requestPermissions().then(granted => {
       if (granted) {
-        console.log('Enabling My Location..');
         this.mapView.myLocationEnabled = true;
         this.mapView.settings.myLocationButtonEnabled = true;
       }
     });
   }
 
-  onCoordinateTapped(args) {
-    console.log(
-      'Coordinate Tapped, Lat: ' +
-        args.position.latitude +
-        ', Lon: ' +
-        args.position.longitude,
-      args
-    );
-  }
-
-  onMarkerEvent(args) {
-    console.log(
-      'Marker Event: \'' +
-        args.eventName +
-        '\' triggered on: ' +
-        args.marker.title +
-        ', Lat: ' +
-        args.marker.position.latitude +
-        ', Lon: ' +
-        args.marker.position.longitude,
-      args
-    );
-  }
-
   requestPermissions() {
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve) {
       permissions
-        .requestPermission(
-          [
-            android.Manifest.permission.ACCESS_FINE_LOCATION,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION
-          ],
-        )
-        .then(function(result) {
-          console.log('Permissions granted!');
+        .requestPermission([
+          android.Manifest.permission.ACCESS_FINE_LOCATION,
+          android.Manifest.permission.ACCESS_COARSE_LOCATION
+        ])
+        .then(function() {
           resolve(true);
         })
         .catch(function(result) {
