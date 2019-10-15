@@ -1,42 +1,29 @@
 <TabView id="tabViewContainer">
   <StackLayout *tabItem="{ title: 'Polecane' }">
-    <StackLayout>
-      <Label
-        text="Second Tab"
-        textWrap="true"
-        class="m-15 h2 text-left"
-        color="blue"
-      ></Label>
-    </StackLayout>
+    <GridLayout>
+      <RadListView [items]="recommendedRestaurants">
+        <ng-template let-item="item">
+            <StackLayout orientation="vertical">
+                <Label class="nameLabel" [text]="item.name"></Label>
+                <Label class="descriptionLabel" [text]="item.description"></Label>
+            </StackLayout>
+        </ng-template>
+    </RadListView>
+    </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Do odwiedzenia' }">
     <StackLayout>
-      <Label
-        text="First Tab"
-        textWrap="true"
-        class="m-15 h2 text-left"
-        color="blue"
-      ></Label>
+      
     </StackLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Ulubione' }">
     <StackLayout>
-      <Label
-        text="Second Tab"
-        textWrap="true"
-        class="m-15 h2 text-left"
-        color="blue"
-      ></Label>
+      
     </StackLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Odwiedzone' }">
     <StackLayout>
-      <Label
-        text="Second Tab"
-        textWrap="true"
-        class="m-15 h2 text-left"
-        color="blue"
-      ></Label>
+      
     </StackLayout>
   </StackLayout>
 </TabView>

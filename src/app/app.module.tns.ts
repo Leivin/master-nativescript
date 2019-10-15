@@ -1,6 +1,7 @@
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptModule } from 'nativescript-angular/nativescript.module';
 import { NativeScriptUISideDrawerModule } from 'nativescript-ui-sidedrawer/angular';
+import { NativeScriptUIListViewModule } from 'nativescript-ui-listview/angular';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NativeScriptFormsModule } from 'nativescript-angular/forms';
@@ -37,7 +38,8 @@ import { AuthGuard } from '../services/auth-guard.service';
     AppRoutingModule,
     NativeScriptUISideDrawerModule,
     ReactiveFormsModule,
-    NativeScriptFormsModule
+    NativeScriptFormsModule,
+    NativeScriptUIListViewModule
   ],
   providers: [
     BackendService,

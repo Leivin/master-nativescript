@@ -45,8 +45,8 @@ export class HomeComponent implements OnInit {
     imageSource.loadFromFile('~/assets/images/map_pin.png');
     const icon = new Image();
     icon.imageSource = imageSource;
-
     marker.icon = icon;
+
     this.mapView.addMarker(marker);
 
     this.requestPermissions().then(granted => {
