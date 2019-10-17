@@ -1,10 +1,12 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
-    <StackLayout row="0" class="sidedrawer-header">
-      <Label class="sidedrawer-header-image" *ngIf="this.isUserLoggedIn"></Label>
-      <Label class="sidedrawer-header-brand" text="User Name" *ngIf="this.isUserLoggedIn"></Label>
-      <Label class="footnote" text="username@mail.com" *ngIf="this.isUserLoggedIn"></Label>
-    </StackLayout>
+    <GridLayout columns="80, *" verticalAlignment="center" class="sidedrawer-header">
+      <Label col="0" class="sidedrawer-header-image" *ngIf="this.isUserLoggedIn"></Label>
+      <StackLayout col="1" verticalAlignment="center">
+          <Label class="sidedrawer-header-brand" [text]="this.user.displayName" *ngIf="this.user"></Label>
+          <Label class="footnote" [text]="this.user.email" *ngIf="this.user"></Label>
+      </StackLayout>
+    </GridLayout>
 
     <ScrollView row="1" class="sidedrawer-content">
       <StackLayout>
@@ -47,10 +49,10 @@
           class="sidedrawer-list-item"
           *ngIf="this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="this.backendService.logout()"
+          (tap)="onNavItemTap('/about')"
         >
-          <Label col="0" text="&#xf2f5;" class="fas label-icon"></Label>
-          <Label col="1" text="Wyloguj się"></Label>
+          <Label col="0" text="&#xf013;" class="fas label-icon"></Label>
+          <Label col="1" text="Ustawienia"></Label>
         </GridLayout>
 
         <GridLayout
@@ -58,10 +60,10 @@
           class="sidedrawer-list-item"
           *ngIf="this.isUserLoggedIn"
           [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="onNavItemTap('/about')"
+          (tap)="this.backendService.logout()"
         >
-          <Label col="0" text="&#xf013;" class="fas label-icon"></Label>
-          <Label col="1" text="Ustawienia"></Label>
+          <Label col="0" text="&#xf2f5;" class="fas label-icon"></Label>
+          <Label col="1" text="Wyloguj się"></Label>
         </GridLayout>
 
         <GridLayout

@@ -5,9 +5,17 @@
 .sidedrawer {
   .sidedrawer-header {
     background-color: $darkSeaGreen;
+    background-image: url('~/assets/images/drawer_background.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
     .sidedrawer-header-image {
       margin-bottom: 5;
+      background-image: url('~/assets/images/default_avatar.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
     }
 
     .sidedrawer-header-brand {

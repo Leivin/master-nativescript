@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   private _activatedUrl: string;
   private _sideDrawerTransition: DrawerTransitionBase;
   isUserLoggedIn: boolean;
+  user: any;
 
   constructor(
     private router: Router,
@@ -41,6 +42,12 @@ export class AppComponent implements OnInit {
       .init({
         onAuthStateChanged: function(data) {
           self.isUserLoggedIn = data.loggedIn;
+
+          if (self.isUserLoggedIn) {
+            firebase.getCurrentUser().then(user => { self.user = user; });
+          } else {
+            self.user = {};
+          }
         }
       })
       .then(
