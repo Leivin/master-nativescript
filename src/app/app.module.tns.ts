@@ -13,6 +13,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 import { BackendService } from '../services/backend.service';
 import { AuthGuard } from '../services/auth-guard.service';
@@ -31,7 +32,8 @@ import { AuthGuard } from '../services/auth-guard.service';
     AboutComponent,
     LoginComponent,
     LoaderComponent,
-    MyRestaurantsComponent
+    MyRestaurantsComponent,
+    SettingsComponent
   ],
   imports: [
     NativeScriptModule,

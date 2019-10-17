@@ -48,8 +48,8 @@
           columns="45, *"
           class="sidedrawer-list-item"
           *ngIf="this.isUserLoggedIn"
-          [ngClass]="{ selected: isComponentSelected('/') }"
-          (tap)="onNavItemTap('/about')"
+          [ngClass]="{ selected: isComponentSelected('/settings') }"
+          (tap)="onNavItemTap('/settings')"
         >
           <Label col="0" text="&#xf013;" class="fas label-icon"></Label>
           <Label col="1" text="Ustawienia"></Label>

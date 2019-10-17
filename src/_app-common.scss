@@ -75,3 +75,33 @@
 .label-icon {
     text-align: center;
 }
+
+// Form Styles
+.page {
+  flex-direction: column;
+}
+
+.form {
+  margin-left: 30;
+  margin-right: 30;
+  flex-grow: 2;
+  vertical-align: middle;
+}
+
+.form__header {
+  horizontal-align: center;
+  font-size: 25;
+  font-weight: 600;
+  margin-bottom: 70;
+  text-align: center;
+  color: $bottleGreen;
+}
+
+.input-field {
+  margin-bottom: 25;
+}
+
+.input {
+  font-size: 18;
+  placeholder-color: $inputPlaceholderColor;
+}

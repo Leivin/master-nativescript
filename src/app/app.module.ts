@@ -8,6 +8,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.co
     LoginComponent,
     LoaderComponent,
     MyRestaurantsComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

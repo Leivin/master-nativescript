@@ -5,6 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 import { AuthGuard } from '~/services/auth-guard.service';
 import { LoginComponent } from './pages/login/login.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,11 @@ export const routes: Routes = [
   {
     path: 'about',
     component: AboutComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
     canActivate: [AuthGuard]
   },
   {

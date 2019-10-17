@@ -1,0 +1,5 @@
+<FlexboxLayout class="page" alignItems="center" justifyContent="center">
+  <StackLayout class="form" [formGroup]="settingsForm"> </StackLayout>
+</FlexboxLayout>
+
+<app-loader *ngIf="this.backendService.isLoading"></app-loader>
