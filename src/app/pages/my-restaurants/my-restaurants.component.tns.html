@@ -15,18 +15,48 @@
     </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Do odwiedzenia' }">
-    <StackLayout>
-      
-    </StackLayout>
+    <GridLayout>
+      <RadListView [items]="restaurantsToVisit">
+        <ng-template let-item="item">
+          <StackLayout>
+              <StackLayout orientation="vertical">
+                  <Label class="nameLabel" [text]="item.name"></Label>
+                  <Label class="descriptionLabel" [text]="item.description"></Label>
+              </StackLayout>
+              <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
+        </ng-template>
+    </RadListView>
+    </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Ulubione' }">
-    <StackLayout>
-      
-    </StackLayout>
+    <GridLayout>
+      <RadListView [items]="favouriteRestaurants">
+        <ng-template let-item="item">
+          <StackLayout>
+              <StackLayout orientation="vertical">
+                  <Label class="nameLabel" [text]="item.name"></Label>
+                  <Label class="descriptionLabel" [text]="item.description"></Label>
+              </StackLayout>
+              <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
+        </ng-template>
+    </RadListView>
+    </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Odwiedzone' }">
-    <StackLayout>
-      
-    </StackLayout>
+    <GridLayout>
+      <RadListView [items]="visitedRestaurants">
+        <ng-template let-item="item">
+          <StackLayout>
+              <StackLayout orientation="vertical">
+                  <Label class="nameLabel" [text]="item.name"></Label>
+                  <Label class="descriptionLabel" [text]="item.description"></Label>
+              </StackLayout>
+              <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
+        </ng-template>
+    </RadListView>
+    </GridLayout>
   </StackLayout>
 </TabView>

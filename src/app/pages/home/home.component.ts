@@ -5,11 +5,14 @@ import * as permissions from 'nativescript-permissions';
 import { Image } from 'tns-core-modules/ui/image';
 import { ImageSource } from 'tns-core-modules/image-source';
 import googleMapsStyles from '../../../shared/google-maps-styles';
+import { Restaurant } from '~/interfaces/restaurant';
 
 declare var android: any;
 
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement('MapView', () => MapView);
+
+const firebase = require('nativescript-plugin-firebase/app');
 
 @Component({
   selector: 'app-home',
@@ -31,23 +34,40 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
+  getRestaurants() {
+    const restaurants = firebase.firestore().collection('restaurants').limit(20);
+
+    const mapIcon = new ImageSource();
+    mapIcon.loadFromFile('~/assets/images/map_pin.png');
+    const icon = new Image();
+    icon.imageSource = mapIcon;
+
+    // Get restaurants and assign them to local variable
+    restaurants.get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const restaurant: Restaurant = {
+          ...doc.data(),
+          id: doc.id,
+        };
+
+        const marker = new Marker();
+        marker.position = Position.positionFromLatLng(
+          restaurant.coordinates.latitude,
+          restaurant.coordinates.longitude
+        );
+        marker.title = restaurant.name;
+        marker.snippet = restaurant.address;
+        marker.icon = icon;
+
+        this.mapView.addMarker(marker);
+      });
+    });
+  }
+
   // Map events
   onMapReady(event) {
     this.mapView = event.object;
     this.mapView.setStyle(<Style>googleMapsStyles);
-
-    const marker = new Marker();
-    marker.position = Position.positionFromLatLng(52.27, 21.04);
-    marker.title = 'Paweł Kosmala';
-    marker.snippet = 'Miłość mojego życia';
-
-    const imageSource = new ImageSource();
-    imageSource.loadFromFile('~/assets/images/map_pin.png');
-    const icon = new Image();
-    icon.imageSource = imageSource;
-    marker.icon = icon;
-
-    this.mapView.addMarker(marker);
 
     this.requestPermissions().then(granted => {
       if (granted) {
@@ -55,6 +75,8 @@ export class HomeComponent implements OnInit {
         this.mapView.settings.myLocationButtonEnabled = true;
       }
     });
+
+    this.getRestaurants();
   }
 
   onSearchBarLoaded(event) {
