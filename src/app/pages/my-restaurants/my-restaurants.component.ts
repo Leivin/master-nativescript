@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Restaurant } from '../../../interfaces/restaurant';
+import { RouterExtensions } from 'nativescript-angular/router';
 
 const firebase = require('nativescript-plugin-firebase/app');
 
@@ -14,7 +15,8 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
   visitedRestaurants: Array<Restaurant> = [];
   restaurantsToVisit: Array<Restaurant> = [];
 
-  constructor() {}
+  constructor(
+    private routerExtensions: RouterExtensions,) {}
 
   ngOnInit() {}
 
@@ -86,6 +88,17 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
           }
         }
       );
+    });
+  }
+
+  goToRestaurant(id: string) {
+    this.routerExtensions.navigate(['/restaurant'], {
+      transition: {
+        name: 'fade'
+      },
+      queryParams: {
+        restaurantId: id,
+      }
     });
   }
 }

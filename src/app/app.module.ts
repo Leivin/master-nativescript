@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LoaderComponent } from './common/loader/loader.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { RestaurantComponent } from './pages/restaurant/restaurant.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
     LoaderComponent,
     MyRestaurantsComponent,
     SettingsComponent,
+    RestaurantComponent
   ],
   imports: [
     BrowserModule,

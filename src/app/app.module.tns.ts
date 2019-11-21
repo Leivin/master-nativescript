@@ -17,6 +17,7 @@ import { SettingsComponent } from './pages/settings/settings.component';
 
 import { BackendService } from '../services/backend.service';
 import { AuthGuard } from '../services/auth-guard.service';
+import { RestaurantComponent } from './pages/restaurant/restaurant.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -33,7 +34,8 @@ import { AuthGuard } from '../services/auth-guard.service';
     LoginComponent,
     LoaderComponent,
     MyRestaurantsComponent,
-    SettingsComponent
+    SettingsComponent,
+    RestaurantComponent
   ],
   imports: [
     NativeScriptModule,

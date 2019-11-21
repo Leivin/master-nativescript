@@ -6,6 +6,7 @@ import { AuthGuard } from '~/services/auth-guard.service';
 import { LoginComponent } from './pages/login/login.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { RestaurantComponent } from './pages/restaurant/restaurant.component';
 
 export const routes: Routes = [
   {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     path: 'my-restaurants',
     component: MyRestaurantsComponent,
     canActivate: [AuthGuard] // Ścieżka nie jest dostępna dla niezalogowanych użytkowników
+  },
+  {
+    path: 'restaurant',
+    component: RestaurantComponent,
   },
   {
     path: 'about',
