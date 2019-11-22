@@ -14,14 +14,13 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
   favouriteRestaurants: Array<Restaurant> = [];
   visitedRestaurants: Array<Restaurant> = [];
   restaurantsToVisit: Array<Restaurant> = [];
+  isLoading = true;
 
-  constructor(
-    private routerExtensions: RouterExtensions,) {}
+  constructor(private routerExtensions: RouterExtensions) {}
 
   ngOnInit() {}
 
   ngAfterViewInit() {
-    // TODO: Implement loader
     this.getAllRestaurants();
   }
 
@@ -47,7 +46,7 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
     const userToRestaurants = firebase
       .firestore()
       .collection('users')
-      .doc('default');
+      .doc('default'); // TODO: Zmienić na dowolnego użytkownika
 
     // Get user to restaurants
     userToRestaurants.get().then(doc => {
@@ -89,15 +88,17 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
         }
       );
     });
+
+    this.isLoading = false;
   }
 
   goToRestaurant(id: string) {
     this.routerExtensions.navigate(['/restaurant'], {
       transition: {
-        name: 'fade'
+        name: 'slide'
       },
       queryParams: {
-        restaurantId: id,
+        restaurantId: id
       }
     });
   }

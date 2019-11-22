@@ -6,6 +6,7 @@ import { Image } from 'tns-core-modules/ui/image';
 import { ImageSource } from 'tns-core-modules/image-source';
 import googleMapsStyles from '../../../shared/google-maps-styles';
 import { Restaurant } from '~/interfaces/restaurant';
+import { RouterExtensions } from 'nativescript-angular/router';
 
 declare var android: any;
 
@@ -30,12 +31,15 @@ export class HomeComponent implements OnInit {
   padding = [40, 40, 40, 40];
   mapView: MapView;
 
-  constructor() {}
+  constructor(private routerExtensions: RouterExtensions) {}
 
   ngOnInit() {}
 
   getRestaurants() {
-    const restaurants = firebase.firestore().collection('restaurants').limit(20);
+    const restaurants = firebase
+      .firestore()
+      .collection('restaurants')
+      .limit(20);
 
     const mapIcon = new ImageSource();
     mapIcon.loadFromFile('~/assets/images/map_pin.png');
@@ -47,7 +51,7 @@ export class HomeComponent implements OnInit {
       querySnapshot.forEach(doc => {
         const restaurant: Restaurant = {
           ...doc.data(),
-          id: doc.id,
+          id: doc.id
         };
 
         const marker = new Marker();
@@ -58,6 +62,9 @@ export class HomeComponent implements OnInit {
         marker.title = restaurant.name;
         marker.snippet = restaurant.address;
         marker.icon = icon;
+        marker.userData = {
+          id: restaurant.id
+        };
 
         this.mapView.addMarker(marker);
       });
@@ -77,6 +84,19 @@ export class HomeComponent implements OnInit {
     });
 
     this.getRestaurants();
+  }
+
+  onMarkerInfoWindowTapped(event) {
+    const id = event.marker.userData.id;
+
+    this.routerExtensions.navigate(['/restaurant'], {
+      transition: {
+        name: 'slide'
+      },
+      queryParams: {
+        restaurantId: id
+      }
+    });
   }
 
   onSearchBarLoaded(event) {

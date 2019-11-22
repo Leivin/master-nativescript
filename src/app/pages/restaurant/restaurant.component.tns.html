@@ -1,1 +1,32 @@
-Restauracja X
+<app-loader *ngIf="isLoading"></app-loader>
+
+<StackLayout>
+    <GridLayout>
+          <StackLayout>
+              <StackLayout orientation="vertical">
+                <!-- TODO: Slider ze zdjęciami restauracji -->
+                <Image *ngFor="let image of restaurant.gallery" [src]="image" loadMode="async" stretch="aspectFit"></Image>
+                <Label class="nameLabel" [text]="restaurant.name"></Label>
+                <Label class="descriptionLabel" [text]="restaurant.description"></Label>
+              </StackLayout>
+              <StackLayout class="hr-light"></StackLayout>
+              <StackLayout>
+                    <MapView
+                      #miniMapView
+                      [latitude]="latitude"
+                      [longitude]="longitude"
+                      [zoom]="zoom"
+                      [minZoom]="minZoom"
+                      [maxZoom]="maxZoom"
+                      [bearing]="bearing"
+                      [tilt]="tilt"
+                      [padding]="padding"
+                      (mapReady)="onMapReady($event)"
+                      height="200"
+                    ></MapView>
+                  </StackLayout>
+          </StackLayout>
+    </GridLayout>
+  </StackLayout>
+
+  <!-- TODO: Sekcja komentarzy, sekcja z tagami i kuchnią, sekcja z oceną -->

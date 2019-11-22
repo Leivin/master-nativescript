@@ -18,5 +18,7 @@
     [tilt]="tilt"
     [padding]="padding"
     (mapReady)="onMapReady($event)"
-  ></MapView>
+    (markerInfoWindowTapped)="onMarkerInfoWindowTapped($event)"
+  >
+</MapView>
 </StackLayout>
