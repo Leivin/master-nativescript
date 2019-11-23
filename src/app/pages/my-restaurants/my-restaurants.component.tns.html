@@ -1,3 +1,4 @@
+<app-action-bar></app-action-bar>
 <app-loader *ngIf="isLoading"></app-loader>
 
 <TabView id="tabViewContainer">
@@ -7,8 +8,14 @@
         <ng-template let-item="item">
           <StackLayout (tap)="goToRestaurant(item.id)">
               <StackLayout orientation="vertical">
-                  <Label class="nameLabel" [text]="item.name"></Label>
-                  <Label class="descriptionLabel" [text]="item.description"></Label>
+                  <Image
+                  [src]="item.main_image"
+                  loadMode="async"
+                  stretch="aspectFit"
+                ></Image>
+                  <Label [text]="item.name"></Label>
+                  <Label [text]="item.address"></Label>
+                  <Label [text]="4.0"></Label>
               </StackLayout>
               <StackLayout class="hr-light"></StackLayout>
           </StackLayout>
@@ -20,13 +27,19 @@
     <GridLayout>
       <RadListView [items]="restaurantsToVisit">
         <ng-template let-item="item">
-          <StackLayout>
-              <StackLayout orientation="vertical">
-                  <Label class="nameLabel" [text]="item.name"></Label>
-                  <Label class="descriptionLabel" [text]="item.description"></Label>
-              </StackLayout>
-              <StackLayout class="hr-light"></StackLayout>
-          </StackLayout>
+            <StackLayout (tap)="goToRestaurant(item.id)">
+                <StackLayout orientation="vertical">
+                    <Image
+                    [src]="item.main_image"
+                    loadMode="async"
+                    stretch="aspectFit"
+                  ></Image>
+                    <Label [text]="item.name"></Label>
+                    <Label [text]="item.address"></Label>
+                    <Label [text]="4.0"></Label>
+                </StackLayout>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
         </ng-template>
     </RadListView>
     </GridLayout>
@@ -35,13 +48,19 @@
     <GridLayout>
       <RadListView [items]="favouriteRestaurants">
         <ng-template let-item="item">
-          <StackLayout>
-              <StackLayout orientation="vertical">
-                  <Label class="nameLabel" [text]="item.name"></Label>
-                  <Label class="descriptionLabel" [text]="item.description"></Label>
-              </StackLayout>
-              <StackLayout class="hr-light"></StackLayout>
-          </StackLayout>
+            <StackLayout (tap)="goToRestaurant(item.id)">
+                <StackLayout orientation="vertical">
+                    <Image
+                    [src]="item.main_image"
+                    loadMode="async"
+                    stretch="aspectFit"
+                  ></Image>
+                    <Label [text]="item.name"></Label>
+                    <Label [text]="item.address"></Label>
+                    <Label [text]="4.0"></Label>
+                </StackLayout>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
         </ng-template>
     </RadListView>
     </GridLayout>
@@ -50,13 +69,19 @@
     <GridLayout>
       <RadListView [items]="visitedRestaurants">
         <ng-template let-item="item">
-          <StackLayout>
-              <StackLayout orientation="vertical">
-                  <Label class="nameLabel" [text]="item.name"></Label>
-                  <Label class="descriptionLabel" [text]="item.description"></Label>
-              </StackLayout>
-              <StackLayout class="hr-light"></StackLayout>
-          </StackLayout>
+            <StackLayout (tap)="goToRestaurant(item.id)">
+                <StackLayout orientation="vertical">
+                    <Image
+                    [src]="item.main_image"
+                    loadMode="async"
+                    stretch="aspectFit"
+                  ></Image>
+                    <Label [text]="item.name"></Label>
+                    <Label [text]="item.address"></Label>
+                    <Label [text]="4.0"></Label>
+                </StackLayout>
+                <StackLayout class="hr-light"></StackLayout>
+            </StackLayout>
         </ng-template>
     </RadListView>
     </GridLayout>

@@ -33,7 +33,7 @@ export class MyRestaurantsComponent implements OnInit, AfterViewInit {
       querySnapshot.forEach(doc => {
         const restaurant: Restaurant = {
           ...doc.data(),
-          id: doc.id
+          id: doc.id,
         };
         this.recommendedRestaurants.push(restaurant);
       });

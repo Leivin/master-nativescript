@@ -1,10 +1,26 @@
 <RadSideDrawer [drawerTransition]="sideDrawerTransition">
   <GridLayout tkDrawerContent rows="auto, *" class="sidedrawer sidedrawer-left">
-    <GridLayout columns="80, *" verticalAlignment="center" class="sidedrawer-header">
-      <Label col="0" class="sidedrawer-header-image" *ngIf="this.isUserLoggedIn"></Label>
+    <GridLayout
+      columns="80, *"
+      verticalAlignment="center"
+      class="sidedrawer-header"
+    >
+      <label
+        col="0"
+        class="sidedrawer-header-image"
+        *ngIf="this.isUserLoggedIn"
+      ></label>
       <StackLayout col="1" verticalAlignment="center">
-          <Label class="sidedrawer-header-brand" [text]="this.user.displayName" *ngIf="this.user"></Label>
-          <Label class="footnote" [text]="this.user.email" *ngIf="this.user"></Label>
+        <label
+          class="sidedrawer-header-brand"
+          [text]="this.user.displayName"
+          *ngIf="this.user"
+        ></label>
+        <label
+          class="footnote"
+          [text]="this.user.email"
+          *ngIf="this.user"
+        ></label>
       </StackLayout>
     </GridLayout>
 
@@ -16,8 +32,8 @@
           [ngClass]="{ selected: isComponentSelected('/home') }"
           (tap)="onNavItemTap('/home')"
         >
-          <Label col="0" text="&#xf3c5;" class="fas label-icon"></Label>
-          <Label col="1" text="Mapa restauracji"></Label>
+          <label col="0" text="&#xf3c5;" class="fas label-icon"></label>
+          <label col="1" text="Mapa restauracji"></label>
         </GridLayout>
 
         <GridLayout
@@ -27,8 +43,8 @@
           [ngClass]="{ selected: isComponentSelected('/my-restaurants') }"
           (tap)="onNavItemTap('/my-restaurants')"
         >
-          <Label col="0" text="&#xf005;" class="fas label-icon"></Label>
-          <Label col="1" text="Moje restauracje"></Label>
+          <label col="0" text="&#xf005;" class="fas label-icon"></label>
+          <label col="1" text="Moje restauracje"></label>
         </GridLayout>
 
         <StackLayout class="hr-light"></StackLayout>
@@ -40,8 +56,8 @@
           [ngClass]="{ selected: isComponentSelected('/login') }"
           (tap)="onNavItemTap('/login')"
         >
-          <Label col="0" text="&#xf007;" class="fas label-icon"></Label>
-          <Label col="1" text="Zaloguj się"></Label>
+          <label col="0" text="&#xf007;" class="fas label-icon"></label>
+          <label col="1" text="Zaloguj się"></label>
         </GridLayout>
 
         <GridLayout
@@ -51,8 +67,8 @@
           [ngClass]="{ selected: isComponentSelected('/settings') }"
           (tap)="onNavItemTap('/settings')"
         >
-          <Label col="0" text="&#xf013;" class="fas label-icon"></Label>
-          <Label col="1" text="Ustawienia"></Label>
+          <label col="0" text="&#xf013;" class="fas label-icon"></label>
+          <label col="1" text="Ustawienia"></label>
         </GridLayout>
 
         <GridLayout
@@ -62,8 +78,8 @@
           [ngClass]="{ selected: isComponentSelected('/') }"
           (tap)="this.backendService.logout()"
         >
-          <Label col="0" text="&#xf2f5;" class="fas label-icon"></Label>
-          <Label col="1" text="Wyloguj się"></Label>
+          <label col="0" text="&#xf2f5;" class="fas label-icon"></label>
+          <label col="1" text="Wyloguj się"></label>
         </GridLayout>
 
         <GridLayout
@@ -72,16 +88,13 @@
           [ngClass]="{ selected: isComponentSelected('/about') }"
           (tap)="onNavItemTap('/about')"
         >
-          <Label col="0" text="&#xf128;" class="fas label-icon"></Label>
-          <Label col="1" text="O aplikacji"></Label>
+          <label col="0" text="&#xf128;" class="fas label-icon"></label>
+          <label col="1" text="O aplikacji"></label>
         </GridLayout>
       </StackLayout>
     </ScrollView>
   </GridLayout>
 
-  <page-router-outlet
-    tkMainContent
-    class="page page-content"
-    actionBarVisibility="never"
-  ></page-router-outlet>
+  <page-router-outlet tkMainContent class="page page-content">
+  </page-router-outlet>
 </RadSideDrawer>

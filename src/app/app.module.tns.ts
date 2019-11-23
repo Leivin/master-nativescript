@@ -18,6 +18,9 @@ import { SettingsComponent } from './pages/settings/settings.component';
 import { BackendService } from '../services/backend.service';
 import { AuthGuard } from '../services/auth-guard.service';
 import { RestaurantComponent } from './pages/restaurant/restaurant.component';
+import { CommentsComponent } from './partials/comments/comments.component';
+import { AddCommentComponent } from './partials/add-comment/add-comment.component';
+import { ActionBarComponent } from './common/action-bar/action-bar.component';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
@@ -35,7 +38,10 @@ import { RestaurantComponent } from './pages/restaurant/restaurant.component';
     LoaderComponent,
     MyRestaurantsComponent,
     SettingsComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    CommentsComponent,
+    AddCommentComponent,
+    ActionBarComponent
   ],
   imports: [
     NativeScriptModule,

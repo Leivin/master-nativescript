@@ -8,6 +8,7 @@ export interface Restaurant {
   cuisine?: Array<string>;
   description?: string;
   gallery?: Array<string>;
+  main_image?: string;
   name?: string;
   score_amount?: number;
   score_sum?: number;

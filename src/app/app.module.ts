@@ -10,6 +10,9 @@ import { LoaderComponent } from './common/loader/loader.component';
 import { MyRestaurantsComponent } from './pages/my-restaurants/my-restaurants.component';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { RestaurantComponent } from './pages/restaurant/restaurant.component';
+import { CommentsComponent } from './partials/comments/comments.component';
+import { AddCommentComponent } from './partials/add-comment/add-comment.component';
+import { ActionBarComponent } from './common/action-bar/action-bar.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,10 @@ import { RestaurantComponent } from './pages/restaurant/restaurant.component';
     LoaderComponent,
     MyRestaurantsComponent,
     SettingsComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    CommentsComponent,
+    AddCommentComponent,
+    ActionBarComponent
   ],
   imports: [
     BrowserModule,
