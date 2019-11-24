@@ -7,83 +7,86 @@
       <RadListView [items]="recommendedRestaurants">
         <ng-template let-item="item">
           <StackLayout (tap)="goToRestaurant(item.id)">
-              <StackLayout orientation="vertical">
-                  <Image
-                  [src]="item.main_image"
-                  loadMode="async"
-                  stretch="aspectFit"
-                ></Image>
-                  <Label [text]="item.name"></Label>
-                  <Label [text]="item.address"></Label>
-                  <Label [text]="4.0"></Label>
-              </StackLayout>
-              <StackLayout class="hr-light"></StackLayout>
+            <StackLayout orientation="vertical">
+              <image
+                [src]="item.main_image"
+                loadMode="async"
+                stretch="aspectFit"
+              ></image>
+              <label [text]="item.name"></label>
+              <label [text]="item.address"></label>
+              <label [text]="4.0"></label>
+            </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
           </StackLayout>
         </ng-template>
-    </RadListView>
+      </RadListView>
     </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Do odwiedzenia' }">
     <GridLayout>
       <RadListView [items]="restaurantsToVisit">
         <ng-template let-item="item">
-            <StackLayout (tap)="goToRestaurant(item.id)">
-                <StackLayout orientation="vertical">
-                    <Image
-                    [src]="item.main_image"
-                    loadMode="async"
-                    stretch="aspectFit"
-                  ></Image>
-                    <Label [text]="item.name"></Label>
-                    <Label [text]="item.address"></Label>
-                    <Label [text]="4.0"></Label>
-                </StackLayout>
-                <StackLayout class="hr-light"></StackLayout>
+          <StackLayout (tap)="goToRestaurant(item.id)">
+            <StackLayout orientation="vertical">
+              <image
+                [src]="item.main_image"
+                loadMode="async"
+                stretch="aspectFit"
+              ></image>
+              <label [text]="item.name"></label>
+              <label [text]="item.address"></label>
+              <label [text]="4.0"></label>
             </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
         </ng-template>
-    </RadListView>
+      </RadListView>
+      <label *ngIf="restaurantsToVisit.length === 0" text="Dodaj restauracje do odwiedzenia"></label>
     </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Ulubione' }">
     <GridLayout>
       <RadListView [items]="favouriteRestaurants">
         <ng-template let-item="item">
-            <StackLayout (tap)="goToRestaurant(item.id)">
-                <StackLayout orientation="vertical">
-                    <Image
-                    [src]="item.main_image"
-                    loadMode="async"
-                    stretch="aspectFit"
-                  ></Image>
-                    <Label [text]="item.name"></Label>
-                    <Label [text]="item.address"></Label>
-                    <Label [text]="4.0"></Label>
-                </StackLayout>
-                <StackLayout class="hr-light"></StackLayout>
+          <StackLayout (tap)="goToRestaurant(item.id)">
+            <StackLayout orientation="vertical">
+              <image
+                [src]="item.main_image"
+                loadMode="async"
+                stretch="aspectFit"
+              ></image>
+              <label [text]="item.name"></label>
+              <label [text]="item.address"></label>
+              <label [text]="4.0"></label>
             </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
         </ng-template>
-    </RadListView>
+      </RadListView>
+      <label *ngIf="favouriteRestaurants.length === 0" text="Dodaj ulubione restauracje"></label>
     </GridLayout>
   </StackLayout>
   <StackLayout *tabItem="{ title: 'Odwiedzone' }">
     <GridLayout>
       <RadListView [items]="visitedRestaurants">
         <ng-template let-item="item">
-            <StackLayout (tap)="goToRestaurant(item.id)">
-                <StackLayout orientation="vertical">
-                    <Image
-                    [src]="item.main_image"
-                    loadMode="async"
-                    stretch="aspectFit"
-                  ></Image>
-                    <Label [text]="item.name"></Label>
-                    <Label [text]="item.address"></Label>
-                    <Label [text]="4.0"></Label>
-                </StackLayout>
-                <StackLayout class="hr-light"></StackLayout>
+          <StackLayout (tap)="goToRestaurant(item.id)">
+            <StackLayout orientation="vertical">
+              <image
+                [src]="item.main_image"
+                loadMode="async"
+                stretch="aspectFit"
+              ></image>
+              <label [text]="item.name"></label>
+              <label [text]="item.address"></label>
+              <label [text]="4.0"></label>
             </StackLayout>
+            <StackLayout class="hr-light"></StackLayout>
+          </StackLayout>
         </ng-template>
-    </RadListView>
+      </RadListView>
+      <label *ngIf="visitedRestaurants.length === 0" text="Zapisz odwiedzone restuaracje"></label>
     </GridLayout>
   </StackLayout>
 </TabView>

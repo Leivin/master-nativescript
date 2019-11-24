@@ -19,6 +19,10 @@ export class BackendService {
     return loggedIn;
   }
 
+  public getUser(): string {
+    return this.user;
+  }
+
   logout() {
     this.isLoading = true;
 
