@@ -6,9 +6,12 @@ import googleMapsStyles from '../../../shared/google-maps-styles';
 import { Image } from 'tns-core-modules/ui/image';
 import { ImageSource } from 'tns-core-modules/image-source';
 import { registerElement } from 'nativescript-angular/element-registry';
+import { Carousel, CarouselItem } from 'nativescript-carousel';
 
 // Important - must register MapView plugin in order to use in Angular templates
 registerElement('MapView', () => MapView);
+registerElement('Carousel', () => Carousel);
+registerElement('CarouselItem', () => CarouselItem);
 
 const firebase = require('nativescript-plugin-firebase/app');
 

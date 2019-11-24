@@ -29,5 +29,6 @@
         "**/*.android.ts",
         "**/*.ios.ts",
         "**/*.spec.ts"
-    ]
+    ],
+    "skipLibCheck": true
 }

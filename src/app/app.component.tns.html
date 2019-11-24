@@ -75,7 +75,7 @@
           columns="45, *"
           class="sidedrawer-list-item"
           *ngIf="this.isUserLoggedIn"
-          [ngClass]="{ selected: isComponentSelected('/') }"
+          [ngClass]="{ selected: isComponentSelected('/logout') }"
           (tap)="this.backendService.logout()"
         >
           <label col="0" text="&#xf2f5;" class="fas label-icon"></label>

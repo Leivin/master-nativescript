@@ -6,13 +6,29 @@
     <GridLayout>
       <StackLayout>
         <StackLayout orientation="vertical">
-          <!-- TODO: Slider ze zdjęciami restauracji -->
-          <Image
-            *ngFor="let image of restaurant.gallery"
-            [src]="image"
-            loadMode="async"
-            stretch="aspectFit"
-          ></Image>
+          <GridLayout height="250">
+            <Carousel
+              #restaurantCarousel
+              debug="false"
+              [items]="restaurant.gallery"
+              height="100%"
+              width="100%"
+              color="white"
+              android:indicatorAnimation="worm"
+              indicatorColor="#fff"
+              indicatorOffset="0, -10"
+              showIndicator="true"
+            >
+              <CarouselItem
+                *ngFor="let image of restaurant.gallery"
+                verticalAlignment="middle"
+              >
+                <GridLayout>
+                  <image [src]="image" stretch="aspectFill" loadMode="async"></image>
+                </GridLayout>
+              </CarouselItem>
+            </Carousel>
+          </GridLayout>
 
           <label [text]="restaurant.name"></label>
           <label [text]="restaurant.description"></label>
@@ -37,6 +53,5 @@
       </StackLayout>
     </GridLayout>
   </StackLayout>
-</ScrollView>
 
 <!-- TODO: Sekcja komentarzy, sekcja z tagami i kuchnią, sekcja z oceną -->
