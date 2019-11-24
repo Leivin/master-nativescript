@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   bearing = 0;
   tilt = 0;
   padding = [40, 40, 40, 40];
-  mapView: MapView;
+  mapView: MapView & { infoWindowTemplates: string };
 
   constructor(private routerExtensions: RouterExtensions) {}
 
@@ -63,8 +63,13 @@ export class HomeComponent implements OnInit {
         marker.snippet = restaurant.address;
         marker.icon = icon;
         marker.userData = {
+          name: restaurant.name,
+          address: restaurant.address,
+          main_image: restaurant.main_image,
           id: restaurant.id
         };
+
+        marker.infoWindowTemplate = 'infoWindowTemplateRestaurant';
 
         this.mapView.addMarker(marker);
       });
@@ -75,6 +80,7 @@ export class HomeComponent implements OnInit {
   onMapReady(event) {
     this.mapView = event.object;
     this.mapView.setStyle(<Style>googleMapsStyles);
+    this.mapView.infoWindowTemplates = this.generateInfoWindowTemplates();
 
     this.requestPermissions().then(granted => {
       if (granted) {
@@ -119,5 +125,28 @@ export class HomeComponent implements OnInit {
           resolve(false);
         });
     });
+  }
+
+  private generateInfoWindowTemplates(): string {
+    const template = `
+    <template key="infoWindowTemplateRestaurant">
+    <StackLayout orientation="vertical" class="info-window-container">
+    <image
+      src="{{ userData.main_image }}"
+      loadMode="async"
+      stretch="aspectFit"
+      height="150"
+    ></image>
+    <StackLayout orientation="horizontal" horizontalAligment="center">
+    <Label text="{{ userData.name }}" horizontalAligment="center" class="info-window-title"></Label>
+    </StackLayout>
+    <Label text="{{ userData.address }}" textWrap="true"></Label>
+    <StackLayout orientation="horizontal">
+    <Label text="Date : "></Label>
+    <Label text="{{ userData.id }}" textWrap="true"></Label>
+    </StackLayout>
+    </StackLayout>
+    </template>`;
+    return template;
   }
 }
