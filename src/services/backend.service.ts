@@ -33,7 +33,7 @@ export class BackendService {
     const sideDrawer = <RadSideDrawer>app.getRootView();
     sideDrawer.closeDrawer();
 
-    this.routerExtensions.navigate(['/login'], {clearHistory: true});
+    this.routerExtensions.navigate(['/login'], { clearHistory: true });
   }
 
   login(email: string, password: string) {
@@ -51,7 +51,7 @@ export class BackendService {
       .then(result => {
         self.user = result.uid;
         self.isLoading = false;
-        self.routerExtensions.navigate(['/'], {clearHistory: true});
+        self.routerExtensions.navigate(['/'], { clearHistory: true });
       })
       .catch(error => {
         self.isLoading = false;
@@ -76,6 +76,7 @@ export class BackendService {
       .then(
         function(user) {
           self.isLoading = false;
+          self.createUserInDB(user.uid);
 
           alert({
             title: 'Pomyślnie zarejestrowano',
@@ -84,7 +85,7 @@ export class BackendService {
           });
 
           self.user = user.uid;
-          self.routerExtensions.navigate(['/'], {clearHistory: true});
+          self.routerExtensions.navigate(['/'], { clearHistory: true });
         },
         function(errorMessage) {
           alert({
@@ -96,6 +97,16 @@ export class BackendService {
           self.isLoading = false;
         }
       );
+  }
+
+  private createUserInDB(uid: string) {
+    const usersCollection = firebase.firestore.collection('users');
+
+    usersCollection.doc(uid).set({
+      restaurants_to_favourite: [],
+      restaurants_to_visit: [],
+      restaurants_visited: []
+    });
   }
 
   private get user(): string {
