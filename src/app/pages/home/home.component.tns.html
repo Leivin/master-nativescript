@@ -2,13 +2,26 @@
 
 <StackLayout>
   <SearchBar
-    hint="Szukaj..."
+    hint="Szukaj typów kuchni..."
     text=""
     color="black"
     textFieldBackgroundColor="white"
     textFieldHintColor="gray"
     (loaded)="onSearchBarLoaded($event)"
+    (textChange)="onTextChanged($event)" 
   ></SearchBar>
+  <GridLayout *ngIf="searchResults.length > 0">
+    <RadListView [items]="searchResults">
+      <ng-template let-item="item">
+        <StackLayout>
+          <StackLayout orientation="vertical">
+            <label [text]="item.name"></label>
+          </StackLayout>
+          <StackLayout class="hr-light"></StackLayout>
+        </StackLayout>
+      </ng-template>
+    </RadListView>
+  </GridLayout>
   <MapView
     #mapView
     [latitude]="latitude"

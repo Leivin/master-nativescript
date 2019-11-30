@@ -7,6 +7,7 @@ import { ImageSource } from 'tns-core-modules/image-source';
 import googleMapsStyles from '../../../shared/google-maps-styles';
 import { Restaurant } from '~/interfaces/restaurant';
 import { RouterExtensions } from 'nativescript-angular/router';
+import { SearchBar } from 'tns-core-modules/ui/search-bar';
 
 declare var android: any;
 
@@ -30,6 +31,7 @@ export class HomeComponent implements OnInit {
   tilt = 0;
   padding = [40, 40, 40, 40];
   mapView: MapView & { infoWindowTemplates: string };
+  searchResults: Array<Restaurant> = [];
 
   constructor(private routerExtensions: RouterExtensions) {}
 
@@ -109,6 +111,33 @@ export class HomeComponent implements OnInit {
     if (event.object.android) {
       event.object.android.clearFocus();
     }
+  }
+
+  onTextChanged(args) {
+    const searchBar = args.object as SearchBar;
+
+    if (searchBar.text === '') {
+      this.searchResults = [];
+      return;
+    }
+
+    const searchResults = firebase
+      .firestore()
+      .collection('restaurants')
+      .where('cuisine', 'array-contains', searchBar.text)
+      .limit(10);
+
+    this.searchResults = [];
+    searchResults.get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const restaurant: Restaurant = {
+          ...doc.data(),
+          id: doc.id
+        };
+
+        this.searchResults.push(restaurant);
+      });
+    });
   }
 
   requestPermissions() {
