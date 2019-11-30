@@ -137,13 +137,10 @@ export class HomeComponent implements OnInit {
       stretch="aspectFit"
       height="150"
     ></image>
-    <StackLayout orientation="horizontal" horizontalAligment="center">
+    <StackLayout orientation="vertical" horizontalAligment="center">
     <Label text="{{ userData.name }}" horizontalAligment="center" class="info-window-title"></Label>
-    </StackLayout>
-    <Label text="{{ userData.address }}" textWrap="true"></Label>
-    <StackLayout orientation="horizontal">
-    <Label text="Date : "></Label>
-    <Label text="{{ userData.id }}" textWrap="true"></Label>
+    <Label text="{{ userData.address }}" textWrap="true" class="info-window-address"></Label>
+    <Button text="Podgląd" class="info-window-button"></Button>
     </StackLayout>
     </StackLayout>
     </template>`;

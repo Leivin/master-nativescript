@@ -105,3 +105,19 @@
   font-size: 18;
   placeholder-color: $inputPlaceholderColor;
 }
+
+// Info Window Styles
+.info-window-title {
+  font-size: 20;
+  font-weight: 600;
+}
+
+.info-window-title,
+.info-window-address {
+  padding: 0 5;
+}
+
+.info-window-button {
+  background-color: $myrtleGreen;
+  color: $white;
+}
